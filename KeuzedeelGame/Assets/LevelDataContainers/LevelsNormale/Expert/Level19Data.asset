@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe48c9d485ceff4f97c0a070bf53b11, type: 3}
+  m_Name: Level19Data
+  m_EditorClassIdentifier: 
+  m_LevelName: Level19
+  m_MovingBlocks:
+  - {fileID: 1946252625414578, guid: c0e2b043e2df25d4a864f8bd46fc9390, type: 2}
+  - {fileID: 1706643367881738, guid: d290c72ab3936f94982a4c325f9e1fb5, type: 2}
+  - {fileID: 1503261233260956, guid: 5afb3a11bea87394e9514b7c7f85bec8, type: 2}
+  - {fileID: 1282359773209950, guid: 766d5d433ab8de64884aec80224ea560, type: 2}
+  - {fileID: 1946252625414578, guid: c0e2b043e2df25d4a864f8bd46fc9390, type: 2}
+  - {fileID: 1946252625414578, guid: c0e2b043e2df25d4a864f8bd46fc9390, type: 2}
+  - {fileID: 1741166902696972, guid: 45fbff22c01beb9479075c35b55ba00d, type: 2}
+  - {fileID: 1035313737002660, guid: e4c06ece0c6cb6c48902c03c00cd67ac, type: 2}
+  - {fileID: 1260133998571112, guid: d5c41e5377f807947a60a010f9408f34, type: 2}
+  - {fileID: 1035313737002660, guid: e4c06ece0c6cb6c48902c03c00cd67ac, type: 2}
+  - {fileID: 1741166902696972, guid: 45fbff22c01beb9479075c35b55ba00d, type: 2}
+  - {fileID: 1282359773209950, guid: 766d5d433ab8de64884aec80224ea560, type: 2}
+  - {fileID: 1946252625414578, guid: c0e2b043e2df25d4a864f8bd46fc9390, type: 2}
+  m_TimerResetValue: 1
+  m_BlockSpeed: 20
