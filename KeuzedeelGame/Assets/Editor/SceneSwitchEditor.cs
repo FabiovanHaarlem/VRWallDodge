@@ -52,4 +52,11 @@ public class SceneSwitchEditor
         EditorSceneManager.OpenScene("Assets/Scenes/Dev/SwordAndShieldTEST.unity");
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
     }
+
+    [MenuItem("Scenes/ExperimentalTEST")]
+    public static void LoadExperimentalTEST()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/Dev/ExperimentalTEST.unity");
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+    }
 }
