@@ -52,4 +52,18 @@ public class SceneSwitchEditor
         EditorSceneManager.OpenScene("Assets/Scenes/Dev/SwordAndShieldTEST.unity");
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
     }
+
+    [MenuItem("Scenes/ExperimentalTEST")]
+    public static void LoadExperimentalTEST()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/Dev/ExperimentalTEST.unity");
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+    }
+
+    [MenuItem("Scenes/HugoMainScene")]
+    public static void LoadHugoMainScene()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/hugo/main menu_blockout.unity");
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+    }
 }

@@ -21,9 +21,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         DisableObjects(new GameObject[2] { m_LastHeadPosition, m_PauseMenu });
         GameManager.m_Instance.m_EventSystem.E_PauseGameEvent += PauseMenu;
-        //m_PauseMenu.transform.SetParent(m_RightHand.transform);
         m_PauseMenu.SetActive(false);
-        //m_PauseMenu = GameObject.Find("PauseMenu");
     }
 
     //Gets all gameObjects for important objects for this class
@@ -31,7 +29,6 @@ public class PauseMenuManager : MonoBehaviour
     {
         m_HeadTracker = GameObject.Find("HeadTrigger");
         m_LastHeadPosition = GameObject.Find("LastPositionHead");
-        //m_PauseMenu = GameObject.Find("PauseMenu");
     }
 
     //Disable given objects
