@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: 9c8063ddbee948743ad251b3ed277938
+guid: 7abbaa690b51e1b488132dd0eb48135b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: b2_Low
-    100002: //RootNode
-    100004: paal_b2_Low
-    400000: b2_Low
-    400002: //RootNode
-    400004: paal_b2_Low
-    2100000: blinn2
-    2300000: b2_Low
-    2300002: paal_b2_Low
-    3300000: b2_Low
-    3300002: paal_b2_Low
-    4300000: paal_b2_Low
-    4300002: b2_Low
+    100000: //RootNode
+    400000: //RootNode
+    2100000: blinn4
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: B4_big
   externalObjects: {}
   materials:
     importMaterials: 1
