@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5f23602966c872140a1eec028ea121aa
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Stark
+  fontNames:
+  - Stark
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 105ab62ddef6e59498d86794a9a88ae4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
