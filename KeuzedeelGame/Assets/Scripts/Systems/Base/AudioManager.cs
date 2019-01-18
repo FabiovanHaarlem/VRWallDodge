@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private AudioSource m_AudioSource;
+    [SerializeField]
+    private AudioSource m_Music;
+    [SerializeField]
+    private AudioSource m_Effects;
+
     private void Start()
     {
-        if (PlayerData.m_AudioManager == null)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            PlayerData.m_AudioManager = this;
-            m_AudioSource = GetComponent<AudioSource>();
-            m_AudioSource.Play();
+        m_Music.volume = 1.0f;
+        m_Effects.volume = 1.0f;
+    }
 
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+    public void UpdateAudioVolume()
+    {
+        m_Music.volume = SavedOptions.m_MusicVolume * SavedOptions.m_MasterVolume;
+        m_Effects.volume = SavedOptions.m_EffectsVolume * SavedOptions.m_MasterVolume;
+        Debug.Log(SavedOptions.m_MusicVolume * SavedOptions.m_MasterVolume);
+        Debug.Log("Update " + m_Music.volume);
+
     }
 }

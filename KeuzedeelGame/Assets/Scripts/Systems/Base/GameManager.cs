@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(ObjectPool))]
 [RequireComponent(typeof(WaveSpawnController))]
 [RequireComponent(typeof(PauseMenuManager))]
+[RequireComponent(typeof(SlowMode))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager m_Instance;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private PauseMenuManager m_PauseMenuManager;
     private ShowDeathShadow m_ShowDeathShadow;
     private WaveSpawnController m_WaveSpawnController;
+    private SlowMode m_SlowMode;
 
     private GameObject m_HeadTrigger;
     [SerializeField]
@@ -25,7 +27,6 @@ public class GameManager : MonoBehaviour
     private GameObject m_LevelCompleteScreen;
     private GameObject m_ScreenPosition;
 
-    private float m_GameSpeed;
     private float m_PauseConfirmTime;
     private float m_PauseDelay;
 
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         m_WaveSpawnController = GetComponent<WaveSpawnController>();
         m_ObjectPool = GetComponent<ObjectPool>();
         m_ShowDeathShadow = GetComponent<ShowDeathShadow>();
+        m_SlowMode = GetComponent<SlowMode>();
     }
 
     private void SetAllSystemScriptsVariables()
@@ -108,6 +110,21 @@ public class GameManager : MonoBehaviour
     public float GetPauseDelay()
     {
         return m_PauseDelay;
+    }
+
+    public void SlowDownTime()
+    {
+        m_SlowMode.SlowDownTime();
+    }
+
+    public void SpeedUpTime()
+    {
+        m_SlowMode.SpeedUpTime();
+    }
+
+    public void SwitchGameSpeed()
+    {
+        m_SlowMode.SwitchGameSpeed();
     }
 
     public void SetAmountOfBlocks(int blocks)
@@ -191,6 +208,11 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public float GetGameSpeed()
+    {
+        return m_SlowMode.GetGameSpeed();
     }
 
     public GameObject GetHeadTrigger()

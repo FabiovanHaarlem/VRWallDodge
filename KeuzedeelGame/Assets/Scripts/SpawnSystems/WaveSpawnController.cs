@@ -39,7 +39,7 @@ public class WaveSpawnController : MonoBehaviour
     {
         if (GameManager.m_Instance.GetGameState() == GameState.Running)
         {
-            m_NextWaveTimer -= Time.deltaTime;
+            m_NextWaveTimer -= GameManager.m_Instance.GetGameSpeed() * Time.deltaTime;
 
             if (m_Wave < m_Waves.Count && m_NextWaveTimer <= 0)
             {

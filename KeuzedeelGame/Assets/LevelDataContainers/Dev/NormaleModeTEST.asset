@@ -15,4 +15,4 @@ MonoBehaviour:
   m_MovingBlocks:
   - {fileID: 1035313737002660, guid: e4c06ece0c6cb6c48902c03c00cd67ac, type: 2}
   m_TimerResetValue: 1
-  m_BlockSpeed: 4
+  m_BlockSpeed: 8

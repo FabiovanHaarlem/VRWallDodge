@@ -18,6 +18,7 @@ public class ControllerPause : MonoBehaviour
         m_ControllerInput.E_OnTrackpadPressEvent += PauseAndUnpauseGame;
         m_ControllerInput.E_OnTrackpadPressUpEvent += ResetPauseDelay;
         m_ControllerInput.E_OnTriggerDownEvent += ToggleViveCamera;
+        m_ControllerInput.E_OnTriggerDownEvent += ChangeGameSpeed;
 
         GameManager.m_Instance.m_EventSystem.E_PauseGameEvent += DownColliderSize;
         GameManager.m_Instance.m_EventSystem.E_UnpauseGameEvent += UpColliderSize;
@@ -38,6 +39,11 @@ public class ControllerPause : MonoBehaviour
     public void ResetPauseDelay()
     {
         GameManager.m_Instance.SetPauseConfirmTime();
+    }
+
+    public void ChangeGameSpeed()
+    {
+        GameManager.m_Instance.SwitchGameSpeed();
     }
 
     public void PauseAndUnpauseGame()

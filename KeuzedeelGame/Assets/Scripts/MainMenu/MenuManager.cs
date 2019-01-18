@@ -12,6 +12,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private ViveWebcam m_ViveWebcam;
 
+    [SerializeField]
+    private List<GameObject> m_LevelGroups;
+    private int m_LevelGroupIndex;
+
     private bool m_ViveCamActive;
 
     private void Awake()
@@ -19,6 +23,7 @@ public class MenuManager : MonoBehaviour
         m_Instance = this;
         SelectedLevelData.SetLevelsData(m_LevelsData);
         m_ViveCamActive = false;
+        m_LevelGroupIndex = 0;
     }
 
     public void ToggleViveCam()
@@ -41,6 +46,16 @@ public class MenuManager : MonoBehaviour
         {
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            RaiseVolume("Music");
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            LowerVolume("Music");
+        }
     }
 
     public void GoToLevel(string sceneName)
@@ -48,10 +63,65 @@ public class MenuManager : MonoBehaviour
         SelectedLevelData.SetActiveLevelData(sceneName);
         SceneManager.LoadScene("NormaleMode");
     }
-
-
-    public void BackToMainMenu()
+    
+    public void SwitchLevelGroup()
     {
-        SceneManager.LoadScene("MainMenu");
+        m_LevelGroups[m_LevelGroupIndex].SetActive(false);
+        if (m_LevelGroupIndex == m_LevelGroups.Count - 1)
+        {
+            m_LevelGroupIndex = 0;
+        }
+        else
+        {
+            m_LevelGroupIndex++;
+        }
+        m_LevelGroups[m_LevelGroupIndex].SetActive(true);
+    }
+
+    public void RaiseVolume(string soundSystem)
+    {
+        if (soundSystem == "Master")
+        {
+            SavedOptions.m_MasterVolume += 0.1f;
+            SavedOptions.m_MasterVolume = Mathf.Clamp(SavedOptions.m_MasterVolume, 0.0f, 1.0f);
+        }
+        else if (soundSystem == "Music")
+        {
+            SavedOptions.m_MusicVolume += 0.1f;
+            SavedOptions.m_MusicVolume = Mathf.Clamp(SavedOptions.m_MusicVolume, 0.0f, 1.0f);
+        }
+        else if (soundSystem == "Effects")
+        {
+            SavedOptions.m_EffectsVolume += 0.1f;
+            SavedOptions.m_EffectsVolume = Mathf.Clamp(SavedOptions.m_EffectsVolume, 0.0f, 1.0f);
+        }
+
+        UpdateVolume();
+    }
+
+    public void LowerVolume(string soundSystem)
+    {
+        if (soundSystem == "Master")
+        {
+            SavedOptions.m_MasterVolume -= 0.1f;
+            SavedOptions.m_MasterVolume = Mathf.Clamp(SavedOptions.m_MasterVolume, 0.0f, 1.0f);
+        }
+        else if (soundSystem == "Music")
+        {
+            SavedOptions.m_MusicVolume -= 0.1f;
+            SavedOptions.m_MusicVolume = Mathf.Clamp(SavedOptions.m_MusicVolume, 0.0f, 1.0f);
+        }
+        else if (soundSystem == "Effects")
+        {
+            SavedOptions.m_EffectsVolume -= 0.1f;
+            SavedOptions.m_EffectsVolume = Mathf.Clamp(SavedOptions.m_EffectsVolume, 0.0f, 1.0f);
+        }
+
+        UpdateVolume();
+    }
+
+    public void UpdateVolume()
+    {
+        SavedOptions.m_AudioManager.UpdateAudioVolume();
     }
 }

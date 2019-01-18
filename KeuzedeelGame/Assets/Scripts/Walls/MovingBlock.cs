@@ -71,6 +71,6 @@ public class MovingBlock : MonoBehaviour
     private void Move(Vector3 direction)
     {
         Vector3 pos = transform.position;
-        transform.position += direction * m_Speed * Time.deltaTime;
+        transform.position += direction * (m_Speed * GameManager.m_Instance.GetGameSpeed()) * Time.deltaTime;
     }
 }

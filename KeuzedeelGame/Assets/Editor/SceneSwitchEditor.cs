@@ -4,6 +4,13 @@ using UnityEditor.SceneManagement;
 
 public class SceneSwitchEditor
 {
+    [MenuItem("Scenes/GameLoader")]
+    public static void LoadGameLoader()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/GameLoader.unity");
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+    }
+
     [MenuItem("Scenes/MainMenu")]
     public static void LoadMainMenu()
     {
