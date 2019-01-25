@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48947c38e83e4246b1fbdcb29a9618c, type: 3}
+  m_Name: English
+  m_EditorClassIdentifier: 
+  m_SetName: English
+  m_LevelSelect: LVL Select
+  m_MapSelect: Map Select
+  m_Calibrate: Calibrate
+  m_Options: Options
+  m_Quit: Quit
+  m_EasyMode: Easy
+  m_MediumMode: Medium
+  m_HardMode: Hard
+  m_SpecialMode: Special
+  m_MasterVolume: Master
+  m_MusicVolume: Music
+  m_EffectsVolume: Effects
+  m_UISize: UI Size
+  m_Gamma: Gamma
+  m_Language: Language

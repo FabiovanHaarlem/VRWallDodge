@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Modes/NormaleMode.unity
     guid: aa4676e80fba87c448aa10ea17c94f4f
   - enabled: 0
+    path: Assets/Scenes/MainMenuTEST.unity
+    guid: 68774fd292c34194986ee478c73fbd3b
+  - enabled: 0
     path: Assets/Scenes/Dev/NormaleModeTEST.unity
     guid: 6a901135cfa2b364b829b9bc3e213d83
   - enabled: 0
