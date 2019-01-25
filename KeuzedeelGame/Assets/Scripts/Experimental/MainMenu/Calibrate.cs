@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class Calibrate : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_HeightLine;
     [SerializeField]
-    private Text m_HeightNumber;
+    private TextMeshProUGUI m_HeightNumber;
     [SerializeField]
     private GameObject m_DuckHeightLine;
     [SerializeField]
-    private Text m_DuckHeightNumber;
+    private TextMeshProUGUI m_DuckHeightNumber;
+    [SerializeField]
+    private TextMeshProUGUI m_InformationText;
+    [SerializeField]
+    private GameObject m_Button;
 
     private GameObject m_PlayerHead;
     private CalibrationState m_CurrentState;
@@ -22,6 +28,9 @@ public class Calibrate : MonoBehaviour
     {
         m_PlayerHead = GameObject.Find("Camera (head)");
         m_CurrentState = CalibrationState.ReadyToCalibrateHeight;
+        m_HeightLine.SetActive(false);
+        m_DuckHeightLine.SetActive(false);
+        m_InformationText.text = "(PRESS HERE)" + Environment.NewLine + "Start height check";
     }
 
     public void ButtonPressed()
@@ -29,47 +38,84 @@ public class Calibrate : MonoBehaviour
         switch(m_CurrentState)
         {
             case CalibrationState.ReadyToCalibrateHeight:
+                m_DuckHeightLine.SetActive(false);
+                m_CurrentState = CalibrationState.GettingPlayerHeight;
+                m_InformationText.text = "(PRESS HERE)" + Environment.NewLine + "Lock in height";
+                m_HeightLine.SetActive(true);
                 break;
-            case CalibrationState.GettinPlayerHeight:
+            case CalibrationState.GettingPlayerHeight:
+                SetHeight();
+                m_CurrentState = CalibrationState.GettingPlayerDuckHeight;
+                m_DuckHeightLine.SetActive(true);
+                m_InformationText.text = "(PRESS HERE)" + Environment.NewLine + "Lock in duck height";
                 break;
-            case CalibrationState.ReadyToCalibrateDuckHeight:
-                break;
-            case CalibrationState.GettinPlayerDuckHeight:
+            case CalibrationState.GettingPlayerDuckHeight:
+                SetDuckHeight();
+                m_CurrentState = CalibrationState.Finishing;
+                SetPlayerHeightProfile();
+                m_InformationText.text = "(PRESS HERE)" + Environment.NewLine + "Restart height check";
                 break;
             case CalibrationState.Finishing:
+                m_CurrentState = CalibrationState.ReadyToCalibrateHeight;
                 break;
         }
     }
 
+    private void SetHeight()
+    {
+        m_PlayerHeight = m_PlayerHead.transform.position.y;
+    }
+
+    private void SetDuckHeight()
+    {
+        m_PlayerDuckHeight = m_PlayerHead.transform.position.y;
+    }
+
+    private void SetPlayerHeightProfile()
+    {
+        PlayerData.SetPlayerHeight(m_PlayerHeight);
+        PlayerData.SetPlayerDuckHeight(m_PlayerDuckHeight);
+        m_CurrentState = CalibrationState.ReadyToCalibrateHeight;
+    }
+
     private void Update()
     {
-        Vector3 playerHeight = new Vector3(transform.position.x, m_PlayerHead.transform.position.y, transform.position.z);
-        if (m_CurrentState == CalibrationState.GettinPlayerHeight)
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            m_HeightLine.transform.position = Vector3.MoveTowards(m_HeightLine.transform.position, playerHeight, 3.0f * Time.deltaTime);
+            ButtonPressed();
         }
-        else if (m_CurrentState == CalibrationState.GettinPlayerHeight)
+
+        if (m_CurrentState == CalibrationState.GettingPlayerHeight)
         {
-            m_DuckHeightLine.transform.position = Vector3.MoveTowards(m_DuckHeightLine.transform.position, playerHeight, 3.0f * Time.deltaTime);
+            Vector3 playerHeight = new Vector3(m_HeightLine.transform.position.x, m_PlayerHead.transform.position.y, m_HeightLine.transform.position.z);
+            m_HeightLine.transform.position = Vector3.MoveTowards(m_HeightLine.transform.position, playerHeight, 2.0f * Time.deltaTime);
+            m_Button.transform.position = Vector3.MoveTowards(m_Button.transform.position, new Vector3(m_Button.transform.position.x, playerHeight.y, m_Button.transform.position.z), 2.0f);
+            UpdateHeightText();
+        }
+        else if (m_CurrentState == CalibrationState.GettingPlayerDuckHeight)
+        {
+            Vector3 playerHeight = new Vector3(m_DuckHeightLine.transform.position.x, m_PlayerHead.transform.position.y, m_DuckHeightLine.transform.position.z);
+            m_DuckHeightLine.transform.position = Vector3.MoveTowards(m_DuckHeightLine.transform.position, playerHeight, 2.0f * Time.deltaTime);
+            m_Button.transform.position = Vector3.MoveTowards(m_Button.transform.position, new Vector3(m_Button.transform.position.x, playerHeight.y, m_Button.transform.position.z), 2.0f);
+            UpdateDuckHeightText();
         }
     }
 
     private void UpdateHeightText()
     {
-        m_HeightNumber.text = "Height: " + m_PlayerHead.transform.position.y;
+        m_HeightNumber.text = "Height: " + System.Math.Round(m_PlayerHead.transform.position.y, 1);
     }
 
     private void UpdateDuckHeightText()
     {
-        m_DuckHeightNumber.text = "Duck height: " + m_PlayerHead.transform.position.y;
+        m_DuckHeightNumber.text = "Duck height: " + System.Math.Round(m_PlayerHead.transform.position.y, 1);
     }
 
     private enum CalibrationState
     {
         ReadyToCalibrateHeight = 0,
-        GettinPlayerHeight,
-        ReadyToCalibrateDuckHeight,
-        GettinPlayerDuckHeight,
+        GettingPlayerHeight,
+        GettingPlayerDuckHeight,
         Finishing
     }
 }

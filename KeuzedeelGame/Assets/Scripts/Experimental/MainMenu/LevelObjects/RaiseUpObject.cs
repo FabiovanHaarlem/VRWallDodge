@@ -10,7 +10,6 @@ public class RaiseUpObject : MonoBehaviour
 
     [SerializeField]
     private float m_DetectionRange;
-    [SerializeField]
     private float m_MoveTimer;
     [SerializeField]
     private float m_AnimationLength;
@@ -24,6 +23,11 @@ public class RaiseUpObject : MonoBehaviour
     private bool m_MoveUp;
 
     private void Awake()
+    {
+
+    }
+
+    private void Start()
     {
         m_PlayerHead = GameObject.Find("Camera (head)");
         m_MoveUp = false;
@@ -70,6 +74,9 @@ public class RaiseUpObject : MonoBehaviour
     private void Lower()
     {
         m_MoveUp = false;
-        m_LevelSelectManager.MoveDown();
+        if (m_LevelSelectManager != null)
+        {
+            m_LevelSelectManager.MoveDown();
+        }
     }
 }
