@@ -204,6 +204,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            SlowDownTime();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();

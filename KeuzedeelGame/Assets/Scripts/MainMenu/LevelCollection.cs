@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using SimpleEasing;
 
 public class LevelCollection : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_UIButtons;
     [SerializeField]
-    private Transform m_UIMoveUpPosition;
-    [SerializeField]
-    private Transform m_UIMoveDownPosition;
-    [SerializeField]
     private LevelSelectManager m_SelectManager;
 
     private List<LevelCollection> m_LevelCollections;
 
-    private Transform m_CurrentMoveTarget;
-
     private bool m_IsActive;
+
+    private float m_MoveTimer;
+    [SerializeField]
+    private float m_AnimationLength;
+    [SerializeField]
+    private float m_AnimationStartPositionOffset;
+    [SerializeField]
+    private float m_AnimationEndPositionOffset;
+    private Vector3 m_DefaultPosition;
+    private bool m_MoveUp;
 
     public bool GetIfActive()
     {
@@ -25,7 +30,10 @@ public class LevelCollection : MonoBehaviour
 
     private void Awake()
     {
-        m_CurrentMoveTarget = m_UIMoveDownPosition;
+        m_MoveUp = false;
+
+        m_MoveTimer = 0.0f;
+        m_DefaultPosition = m_UIButtons.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,13 +46,13 @@ public class LevelCollection : MonoBehaviour
 
     public void MoveMenuDown()
     {
-        m_CurrentMoveTarget = m_UIMoveDownPosition;
+        m_MoveUp = false;
     }
 
     public void MoveMenuUp()
     {
-        m_CurrentMoveTarget = m_UIMoveUpPosition;
         m_IsActive = false;
+        m_MoveUp = true;
     }
 
     private void Halfway()
@@ -54,24 +62,32 @@ public class LevelCollection : MonoBehaviour
 
     public void Move()
     {
-        m_UIButtons.transform.position = Vector3.Lerp(m_UIButtons.transform.position, m_CurrentMoveTarget.position, 3f * Time.deltaTime);
-
-        if (Vector3.Distance(m_UIButtons.transform.position, m_UIMoveDownPosition.position) < 0.05f)
+        if (m_MoveTimer <= 0.1f)
         {
             if (m_IsActive)
             {
                 m_SelectManager.MenuCanSwitch();
             }
-            m_UIButtons.gameObject.SetActive(false);
-        }
-        else
-        {
-            m_UIButtons.gameObject.SetActive(true);
         }
 
-        if (Vector3.Distance(m_UIButtons.transform.position, m_UIMoveDownPosition.position) > 0.05f)
+
+        if (m_MoveTimer >= 0.5f)
         {
             Halfway();
         }
+
+        float y = 0.0f;
+        //y = Easing.easeInQuint(m_buttonTimer, m_animationStart, m_animationChange, m_animationLength);
+        //y = Easing.easeOutQuint(m_MoveTimer, m_AnimationStartPositionOffset, m_AnimationEndPositionOffset, m_AnimationLength);
+        y = Easing.easeInOutExpo(m_MoveTimer, m_AnimationStartPositionOffset, m_AnimationEndPositionOffset, m_AnimationLength);
+
+        if (m_MoveUp)
+            m_MoveTimer += Time.deltaTime;
+        else
+            m_MoveTimer -= Time.deltaTime;
+
+        m_MoveTimer = Mathf.Clamp(m_MoveTimer, 0, m_AnimationLength);
+
+        m_UIButtons.transform.position = m_DefaultPosition + new Vector3(0, y, 0);
     }
 }

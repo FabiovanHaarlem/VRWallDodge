@@ -19,7 +19,7 @@ public class HeadToHighWarning : MonoBehaviour
     //Checks if playerhead is higher than the duck height needed
     private void Update()
     {
-        if (m_HeadSetTrigger.transform.position.y + 0.25 <= transform.position.y - 0.05)
+        if (m_HeadSetTrigger.transform.position.y + 0.1 <= transform.position.y - 0.05)
         {
             m_Renderer.material = m_HeadLowEnough;
         }

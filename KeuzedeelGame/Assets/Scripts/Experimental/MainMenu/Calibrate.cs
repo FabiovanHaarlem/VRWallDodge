@@ -16,8 +16,6 @@ public class Calibrate : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_InformationText;
     [SerializeField]
-    private GameObject m_Button;
-
     private GameObject m_PlayerHead;
     private CalibrationState m_CurrentState;
 
@@ -26,7 +24,7 @@ public class Calibrate : MonoBehaviour
 
     private void Awake()
     {
-        m_PlayerHead = GameObject.Find("Camera (head)");
+        //m_PlayerHead = GameObject.Find("Camera (head)");
         m_CurrentState = CalibrationState.ReadyToCalibrateHeight;
         m_HeightLine.SetActive(false);
         m_DuckHeightLine.SetActive(false);
@@ -61,6 +59,14 @@ public class Calibrate : MonoBehaviour
         }
     }
 
+    public void Cancle()
+    {
+        m_CurrentState = CalibrationState.ReadyToCalibrateHeight;
+        m_HeightLine.SetActive(false);
+        m_DuckHeightLine.SetActive(false);
+        m_InformationText.text = "(PRESS HERE)" + Environment.NewLine + "Start height check";
+    }
+
     private void SetHeight()
     {
         m_PlayerHeight = m_PlayerHead.transform.position.y;
@@ -89,14 +95,12 @@ public class Calibrate : MonoBehaviour
         {
             Vector3 playerHeight = new Vector3(m_HeightLine.transform.position.x, m_PlayerHead.transform.position.y, m_HeightLine.transform.position.z);
             m_HeightLine.transform.position = Vector3.MoveTowards(m_HeightLine.transform.position, playerHeight, 2.0f * Time.deltaTime);
-            m_Button.transform.position = Vector3.MoveTowards(m_Button.transform.position, new Vector3(m_Button.transform.position.x, playerHeight.y, m_Button.transform.position.z), 2.0f);
             UpdateHeightText();
         }
         else if (m_CurrentState == CalibrationState.GettingPlayerDuckHeight)
         {
             Vector3 playerHeight = new Vector3(m_DuckHeightLine.transform.position.x, m_PlayerHead.transform.position.y, m_DuckHeightLine.transform.position.z);
             m_DuckHeightLine.transform.position = Vector3.MoveTowards(m_DuckHeightLine.transform.position, playerHeight, 2.0f * Time.deltaTime);
-            m_Button.transform.position = Vector3.MoveTowards(m_Button.transform.position, new Vector3(m_Button.transform.position.x, playerHeight.y, m_Button.transform.position.z), 2.0f);
             UpdateDuckHeightText();
         }
     }

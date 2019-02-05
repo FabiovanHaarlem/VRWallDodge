@@ -3,10 +3,13 @@ using SimpleEasing;
 
 public class RaiseUpObject : MonoBehaviour
 {
+    [SerializeField]
     private GameObject m_PlayerHead;
 
     [SerializeField]
     private LevelSelectManager m_LevelSelectManager;
+    [SerializeField]
+    private Calibrate m_Calibration;
 
     [SerializeField]
     private float m_DetectionRange;
@@ -22,14 +25,9 @@ public class RaiseUpObject : MonoBehaviour
 
     private bool m_MoveUp;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
-        m_PlayerHead = GameObject.Find("Camera (head)");
+        //m_PlayerHead = GameObject.Find("Camera (head)");
         m_MoveUp = false;
 
         m_MoveTimer = 0.0f;
@@ -77,6 +75,11 @@ public class RaiseUpObject : MonoBehaviour
         if (m_LevelSelectManager != null)
         {
             m_LevelSelectManager.MoveDown();
+        }
+        
+        if (m_Calibration != null)
+        {
+            m_Calibration.Cancle();
         }
     }
 }

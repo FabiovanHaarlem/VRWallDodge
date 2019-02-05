@@ -8,8 +8,6 @@ public class LevelSelectManager : MonoBehaviour
     private LevelCollection m_Active;
     private LevelCollection m_NextLevels;
 
-    private bool m_MenuCanSwitch;
-
     public void SetLevelsActive(LevelCollection levels)
     {
         if (m_Active == null)

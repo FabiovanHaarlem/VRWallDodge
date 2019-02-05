@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     {
         m_Music.volume = 1.0f;
         m_Effects.volume = 1.0f;
+        m_Music.Play();
     }
 
     public void UpdateAudioVolume()

@@ -10,23 +10,8 @@ EditorBuildSettings:
     guid: 4b9f3574f0c42c244808980cdeda9030
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 94cbe07cac86e494784156312c25e056
+    guid: f55a432c3c55a4344bd774a6fa9b2a07
   - enabled: 1
     path: Assets/Scenes/Modes/NormaleMode.unity
-    guid: aa4676e80fba87c448aa10ea17c94f4f
-  - enabled: 0
-    path: Assets/Scenes/MainMenuTEST.unity
-    guid: 68774fd292c34194986ee478c73fbd3b
-  - enabled: 0
-    path: Assets/Scenes/Dev/NormaleModeTEST.unity
-    guid: 6a901135cfa2b364b829b9bc3e213d83
-  - enabled: 0
-    path: Assets/Scenes/Dev/SwordAndShieldTEST.unity
-    guid: 6ae3c6d68573b5d4eb3a076628fdef9c
-  - enabled: 0
-    path: Assets/Scenes/Dev/CrossSectionModeTEST.unity
-    guid: 9a3c69638df0e1c4691747be9143a9af
-  - enabled: 0
-    path: Assets/Scenes/Dev/NewLevelTEST.unity
-    guid: 8db1960c6fca0e04fa578d4d16f615f7
+    guid: ac54dba42eb5f2445bcc491dd014fafe
   m_configObjects: {}

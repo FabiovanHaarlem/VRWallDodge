@@ -20,6 +20,8 @@ public class UIButton : MonoBehaviour
     private float m_AnimationEndPositionOffset;
     [SerializeField]
     private float m_ButtonPressDelay = 0.4f;
+    [SerializeField]
+    private bool m_UseAnimation;
 
     private void Awake()
     {
@@ -33,14 +35,17 @@ public class UIButton : MonoBehaviour
 
     private void Update()
     {
-        float z;
+        if (m_UseAnimation)
+        {
+            float z;
 
-        z = Easing.easeOutBounce(m_ButtonTimer, m_AnimationStartPositionOffset, m_AnimationEndPositionOffset, m_AnimationLength);
+            z = Easing.easeOutBounce(m_ButtonTimer, m_AnimationStartPositionOffset, m_AnimationEndPositionOffset, m_AnimationLength);
 
-        m_ButtonTimer += Time.deltaTime;
-        m_ButtonTimer = Mathf.Clamp(m_ButtonTimer, 0, m_AnimationLength);
+            m_ButtonTimer += Time.deltaTime;
+            m_ButtonTimer = Mathf.Clamp(m_ButtonTimer, 0, m_AnimationLength);
 
-        transform.position = m_DefaultPosition +  new Vector3(0.0f, 0.0f, z);
+            transform.position = m_DefaultPosition + new Vector3(0.0f, 0.0f, z);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,8 +65,11 @@ public class UIButton : MonoBehaviour
 
     private void ButtonClick()
     {
-        if (m_ButtonTimer < m_ButtonPressDelay)
-            return;
+        if (m_UseAnimation)
+        {
+            if (m_ButtonTimer < m_ButtonPressDelay)
+                return;
+        }
 
         m_FunctionToCall.Invoke();
         m_ButtonTimer = 0;

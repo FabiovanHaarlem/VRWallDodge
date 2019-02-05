@@ -1,7 +1,7 @@
 ﻿public static class PlayerData
 {
-    private static float m_DefaultPlayerHeight = 1.65f;
-    private static float m_DefaultPlayerDuckHeight = 1.2f;
+    private static float m_DefaultPlayerHeight = 1.7f;
+    private static float m_DefaultPlayerDuckHeight = 1.0f;
     private static float m_PlayerHeight = m_DefaultPlayerHeight;
     private static float m_PlayerDuckHeight = m_DefaultPlayerDuckHeight;
 
@@ -29,6 +29,6 @@
 
     public static void SetPlayerDuckHeight(float height)
     {
-        m_PlayerDuckHeight = height + 0.3f;
+        m_PlayerDuckHeight = height + 0.05f;
     }
 }

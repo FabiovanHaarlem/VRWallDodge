@@ -18,7 +18,7 @@ public class WaveSpawnController : MonoBehaviour
     public void SetVariables()
     {
         GetLevelData();
-        m_NextWaveTimer = 7f;
+        m_NextWaveTimer = 4f;
     }
 
     public void GetRefs()

@@ -29,7 +29,7 @@ MonoBehaviour:
     m_Settings:
       excludeSkybox: 1
   antialiasing:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       method: 0
       fxaaSettings:
@@ -72,16 +72,16 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       focusDistance: 10
-      aperture: 5.6
+      aperture: 12.2
       focalLength: 50
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
     m_Enabled: 0
     m_Settings:
-      shutterAngle: 270
-      sampleCount: 10
-      frameBlending: 0
+      shutterAngle: 226
+      sampleCount: 9
+      frameBlending: 0.037
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
@@ -97,10 +97,10 @@ MonoBehaviour:
       logMin: -8
       logMax: 4
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
+        intensity: 2.37
         threshold: 1.1
         softKnee: 0.5
         radius: 4
@@ -109,10 +109,10 @@ MonoBehaviour:
         texture: {fileID: 0}
         intensity: 3
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 2
+        tonemapper: 1
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -120,22 +120,22 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0
-        temperature: 0
-        tint: 0
+        postExposure: 1.24
+        temperature: -9
+        tint: 6
         hueShift: 0
-        saturation: 1
-        contrast: 1
+        saturation: 0.9
+        contrast: 0.96
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
+        currentEditingChannel: 1
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.9769594, g: 0.97733057, b: 1, a: 0}
+          power: {r: 0.7599751, g: 0.77159834, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
@@ -149,6 +149,15 @@ MonoBehaviour:
             - serializedVersion: 3
               time: 0
               value: 0
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 0.4477612
+              value: 0.47468352
               inSlope: 1
               outSlope: 1
               tangentMode: 0
@@ -320,11 +329,11 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 0.14760591, g: 0.2924528, b: 0.2602646, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.45
-      smoothness: 0.2
-      roundness: 1
+      intensity: 0.945
+      smoothness: 0.855
+      roundness: 0.713
       mask: {fileID: 0}
       opacity: 1
       rounded: 0
