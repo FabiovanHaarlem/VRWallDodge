@@ -17,8 +17,11 @@ public class LevelSelectManager : MonoBehaviour
         }
         else
         {
-            m_NextLevels = levels;
-            m_Active.MoveMenuDown();
+            if (m_Active.GetIfActive())
+            {
+                m_NextLevels = levels;
+                m_Active.MoveMenuDown();
+            }
         }
     }
 
@@ -51,7 +54,6 @@ public class LevelSelectManager : MonoBehaviour
         {
             m_Active.Move();
         }
-        
     }
 
 }

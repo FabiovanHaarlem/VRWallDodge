@@ -34,6 +34,11 @@ public class SlowMode : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            SwitchGameSpeed();
+        }
+
         if (m_CurrentGameSpeed == GameSpeed.Slowed)
         {
             m_SlowModeScreenEffect.SetActive(true);
@@ -62,6 +67,15 @@ public class SlowMode : MonoBehaviour
         }
         else if (m_CurrentGameSpeed == GameSpeed.Normale)
         {
+            m_SlowTimeLeft += 0.5f * Time.deltaTime;
+            m_SlowPrecentageLeft = (100.0f * m_SlowTimeLeft / 5.0f) / 100.0f;
+            m_SlowPrecentageLeft = Mathf.Clamp(m_SlowPrecentageLeft, 0.0f, 1.0f);
+            for (int i = 0; i < m_SlowMeters.Count; i++)
+            {
+                Vector3 pos = Vector3.Lerp(m_SLowMeterLowestPoint[i].transform.position, m_SlowMeterMaxPoint[i].transform.position, m_SlowPrecentageLeft);
+                m_SlowMeters[i].transform.position = pos;
+            }
+
             m_SlowModeScreenEffect.SetActive(false);
             if (m_GameSpeed < m_GameNormaleSpeed - 0.05f)
             {
@@ -72,6 +86,8 @@ public class SlowMode : MonoBehaviour
                 m_GameSpeed = m_GameNormaleSpeed;
             }
         }
+
+        m_SlowTimeLeft = Mathf.Clamp(m_SlowTimeLeft, 0.0f, 5.0f);
     }
 
     public void SwitchGameSpeed()

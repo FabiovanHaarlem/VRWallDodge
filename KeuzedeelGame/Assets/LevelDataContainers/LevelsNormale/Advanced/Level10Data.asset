@@ -26,4 +26,4 @@ MonoBehaviour:
   - {fileID: 1035313737002660, guid: e4c06ece0c6cb6c48902c03c00cd67ac, type: 2}
   - {fileID: 1260133998571112, guid: d5c41e5377f807947a60a010f9408f34, type: 2}
   m_TimerResetValue: 1.1
-  m_BlockSpeed: 16
+  m_BlockSpeed: 12

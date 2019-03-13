@@ -36,14 +36,6 @@ public class LevelCollection : MonoBehaviour
         m_DefaultPosition = m_UIButtons.transform.position;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            m_SelectManager.SetLevelsActive(this);
-        }
-    }
-
     public void MoveMenuDown()
     {
         m_MoveUp = false;
@@ -70,7 +62,6 @@ public class LevelCollection : MonoBehaviour
             }
         }
 
-
         if (m_MoveTimer >= 0.5f)
         {
             Halfway();
@@ -90,4 +81,13 @@ public class LevelCollection : MonoBehaviour
 
         m_UIButtons.transform.position = m_DefaultPosition + new Vector3(0, y, 0);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            m_SelectManager.SetLevelsActive(this);
+        }
+    }
+
 }
